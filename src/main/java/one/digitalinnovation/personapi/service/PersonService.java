@@ -49,4 +49,12 @@ public class PersonService {
 
         return personMapper.toDTO(person);
     }
+
+    public void delete(Long id) throws PersonNotFoundException {
+        if(personRepository.existsById(id)) {
+            personRepository.deleteById(id);
+        } else {
+            throw new PersonNotFoundException(id);
+        }
+    }
 }
